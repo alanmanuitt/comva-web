@@ -1,3 +1,6 @@
+import React from 'react';
+
+import Contact from "./components/Contact";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Section from "./components/Section";
@@ -67,6 +70,7 @@ const App = () => (
         title={title}
       />
     ))}
+    <Contact />
   </div>
 );
 
