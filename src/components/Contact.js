@@ -33,6 +33,18 @@ class ContactForm extends React.Component {
     }));
   };
 
+  cleanFormFeedback = () => {
+    setTimeout(() => {
+      this.setState((state) => ({
+        ...state,
+        result: {
+          message: "",
+          status: "",
+        },
+      }));
+    }, 5000);
+  };
+
   handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -50,25 +62,31 @@ class ContactForm extends React.Component {
         reply_to: email,
       });
 
-      this.setState({
-        ...INITIAL_STATE,
-        disable: false,
-        result: {
-          message: "Message sent successfully, soon we will contact you",
-          status: "success",
+      this.setState(
+        {
+          ...INITIAL_STATE,
+          disable: false,
+          result: {
+            message: "Message sent successfully, soon we will contact you",
+            status: "success",
+          },
         },
-      });
+        this.cleanFormFeedback
+      );
     } catch (error) {
       console.error(error);
 
-      this.setState((state) => ({
-        ...state,
-        disable: false,
-        result: {
-          message: "Message could not be sent, try again",
-          status: "error",
-        },
-      }));
+      this.setState(
+        (state) => ({
+          ...state,
+          disable: false,
+          result: {
+            message: "Message could not be sent, try again",
+            status: "error",
+          },
+        }),
+        this.cleanFormFeedback
+      );
     }
   };
 
