@@ -1,26 +1,25 @@
-import React from 'react'
-import {FiMenu, fix} from "react-icons/fi";
+import React from "react";
+import { FiMenu, fix } from "react-icons/fi";
 
-//const navbarLinks = [{url: "/home", title="Home"}];
-const Navbar = ({ navbarLinks }) => {
-    return (
-        //<span className="navbar_logo">Comva</span>
-        <nav className="navbar">
-            <ul className="navbar_list">
-                {navbarLinks.map((item) => {
-                    return (
-                        <li className="navbar_item" key={item.title}>
-                            <a className="navbar_link" href={item.url}>
-                                {item.title}
-                            </a>
-                        </li>
-                    );
-                })}
-            </ul>
-        </nav>
-    );
-};
+import "./Navbar.css";
 
-          
+const Navbar = ({ links }) => (
+  <>
+    <nav className="navbar">
+      <ul className="navbar_list">
+        <li className="navbar_item">
+          <span className="navbar_logo">Comva</span>
+        </li>
+        {links.map(({ id, title, url }) => (
+          <li className="navbar_item" key={`navbar-${id}`}>
+            <a className="navbar_link" href={url}>
+              {title}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </>
+);
 
-export default Navbar
+export default Navbar;
